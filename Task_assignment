@@ -1,0 +1,45 @@
+1)	Verifying the error messages are showing in the UI 2nd page
+
+driver.findElement(By.id("emailAddress")).sendKeys("admin@admin.com");
+driver.findElement(By.id("password")).sendKeys("admin");
+driver.findElement(By.id("confirmPassword")).sendKeys("admin");
+driver.findElement(By.xpath("//button[.='Next']")).click();
+
+WebElement firstNameisRequiredError = driver.findElement(By.id("First Name is required"));
+WebElement lastNameIsRequiredError= driver.findElement(By.xpath("//span[text()='Last Name is required']"));
+WebElement addressError= driver.findElement(By.xpath("//span[text()='Address Line 1 is required']"));
+WebElement postCode=driver.findElement(By.xpath("//span[text()='Postcode is required']"));
+WebElement cityError=driver.findElement(By.xpath("//span[text()='City is required']"));
+WebElement stateError=driver.findElement(By.xpath("//span[text()='State is required']"));
+
+if(firstNameisRequiredError && lastNameIsRequiredError && addressError  && postCode && cityError && stateError){
+
+System.out.println("All the errors got displayed");
+
+}else{
+
+logger.info("All the errors not displayed");
+}
+
+2) //Verifying the state dropdown is not showing according to the address
+WebElement stateDropdown= driver.findElement(By.xpath("//option[text()='-- Select state or territory --']"));
+stateDropDown.click();
+WebElement firstState= driver.findElement(By.xpath("//option[2]"));
+WebElement secondState=driver.findElement(By.xpath("//option[3]"));
+WebElement thirdState=driver.findElement(By.xpath("//option[4]"));
+WebElement fourthState=driver.findElement(By.xpath("//option[5]"));
+WebElement fifthState=driver.findElement(By.xpath("//option[6]"));
+WebElement sixthState=driver.findElement(By.xpath("//option[7]"));
+WebElement seventhState=driver.findElement(By.xpath("//option[8]"));
+
+if((firstState.getText.equals("Australian Capital Territory")
+&& secondState.getText.equals("New South Wales") && thirdState.getText.equals("Northern Territory") && 
+fourthState.getText.equals("Queensland") && fifthState.getText.equals("Tasmania") && 
+sixthState.getText.equals("Tasmania") && seventhState.getText.equals("Western Australia")){
+
+      logger.info("States are not showing properly according to the address");
+
+}else{
+
+      logger.info("States are showing properly according to the address");
+}
